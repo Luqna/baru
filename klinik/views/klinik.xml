@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="klinik_form" model="ir.ui.view">
+        <field name="name">surat.ijin.form</field>
+        <field name="model">surat.ijin</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="nip"/>
+                            <field name="tanggal"/>
+                        </group>
+                        <group> 
+                            <field name="posisi"/>
+                            <field name="kode_work_center"/>
+                            <field name="no_kartu"/>
+                            <field name="keluhan"/>
+                        </group> 
+                    </group> 
+                </sheet>
+            </form> 
+        </field>          
+    </record>
+
+    <record id="klinik_action" model="ir.actions.act_window">
+        <field name="name">klinik</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">surat.ijin</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_noncontent_smiling_face">
+                Tuliskan keluhanmu, utamakan kesehatanmu!!!
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem
+        id="kode_klinik_root"
+        name="kode klinik"
+        sequence="10"/>
+
+    <menuitem
+        id="form_ijin"
+        name="form ijin"
+        parent="kode_klinik_root"
+        action="klinik_action"
+        sequence="10"/> 
+        
+</odoo>
