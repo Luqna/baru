@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_penumpang_pesawat,accsess.penumpang.pesawat,model_penumpang_pesawat,,1,1,1,1
+access_menu_dashboard,access.menu.dashboard,model_menu_dashboard,,1,1,1,1

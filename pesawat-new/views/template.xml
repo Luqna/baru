@@ -1,0 +1,7 @@
+<odoo>
+    <template id="pesawat_backend" name="iframe_dashboard">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/pesawat/static/js/js.js"/>
+        </xpath>
+    </template>
+</odoo>
