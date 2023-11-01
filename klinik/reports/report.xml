@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="report_Surat_Klinik"
+        string="Surat_Klinik"
+        model="surat.ijin"
+        report_type="qweb-pdf"
+        name="klinik.report_surat"
+        file="klinik.report_surat"/>
+        
+</odoo>
