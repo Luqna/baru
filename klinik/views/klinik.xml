@@ -5,23 +5,158 @@
         <field name="model">surat.ijin</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                        <button id="button_confirm" name="action_confirm" string="Confirm" class="btn-primary" states="inprogress" type="object"/>
+                        <button id="button_done" name="action_done" string="Mark As Done" class="btn-primary" states="confirm" type="object"/>
+                        <button id="button_inprogress" name="action_inprogress" string="Set To Inprogress" class="btn-primary" states="cancel" type="object"/>
+                        <button id="button_cancel" name="action_cancel" string="Cancel" states="inprogress,confirm,done" type="object"/> 
+                        <field name="state" widget="statusbar" statusbar_visible="inprogress,confirm,done"/>
+                </header>
                 <sheet>
+                    <div class="alert alert-info text-center o_form_header" role="alert">
+                            <a class="close" data-dismiss="alert" href="#">x</a> 
+                            <div>
+                                <strong>Your Hearth is Priority!!</strong>
+                            </div> 
+                            <div>Hope You Better Soon,<field name="name" readonly="1"/> </div>
+                        </div>
                     <group>
                         <group>
                             <field name="name"/>
                             <field name="nip"/>
+                            <field name="posisi"/>
                             <field name="tanggal"/>
                         </group>
                         <group> 
-                            <field name="posisi"/>
                             <field name="kode_work_center"/>
                             <field name="no_kartu"/>
                             <field name="keluhan"/>
+                            <field name="rujukan"/>
+                        </group> 
+                        <group> 
+                            <field name="tahap_waktu_berobat"/>
+                            <field name="checkup"/>
+                            <field name="jam"/>
+                            <field name="diagnosa"/>
                         </group> 
                     </group> 
+                    <!-- <notebook>
+                        <page>
+                            <group>
+                                <field name="surat_ijin_ids" nolabel="1" options="{'reload_on_button': True}">
+                                    <tree>
+                                        <field name="tahap_waktu_berobat "/>
+                                        <field name="jam"/>
+                                        <field name="diagnosa"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>                  -->
                 </sheet>
             </form> 
         </field>          
+    </record>
+
+    <record id="klinik_tree_view" model="ir.ui.view">
+        <field name="name">klinik.tree.view</field>
+        <field name="model">surat.ijin</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="nip"/>
+                <field name="tanggal"/>
+                <field name="posisi"/>
+                <field name="kode_work_center"/>
+                <field name="no_kartu"/>
+                <field name="keluhan"/>
+                <field name="rujukan"/>
+                <field name="tahap_waktu_berobat"/>
+                <field name="checkup"/>
+                <field name="jam"/>
+                <field name="diagnosa"/>
+                <field name="state"/>
+            </tree>
+        </field>    
+    </record>
+
+    <record id="klinik_kanban_view" model="ir.ui.view">
+        <field name="name">klinik.kanban.view</field>
+        <field name="model">surat.ijin</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="nip"/>
+                <field name="tanggal"/>
+                <!-- <field name="posisi"/> -->
+                <field name="kode_work_center"/>
+                <!-- <field name="no_kartu"/>
+                <field name="keluhan"/>
+                <field name="rujukan"/> -->
+                <templates>
+                     <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul> 
+                                    <li>
+                                        <field name="name"/>
+                                    </li>
+                                    <li> 
+                                        <field name="nip"/>
+                                    </li>
+                                    <li> 
+                                        <field name="tanggal"/>
+                                    </li>
+                                    <li> 
+                                        <field name="posisi"/>
+                                    </li>
+                                    <li> 
+                                        <field name="kode_work_center"/>
+                                    </li>
+                                    <li> 
+                                        <field name="no_kartu"/>
+                                    </li>
+                                    <li> 
+                                        <field name="keluhan"/>
+                                    </li>
+                                    <li> 
+                                        <field name="rujukan"/>
+                                    </li>  
+                                    <li>     
+                                        <field name="tahap_waktu_berobat"/>
+                                    </li>
+                                    <li>
+                                        <field name="checkup"/>
+                                    </li>
+                                    <li>
+                                        <field name="jam"/>
+                                    </li>
+                                    <li>
+                                        <field name="diagnosa"/>    
+                                    </li>                      
+                                </ul>
+                            </div>
+                        </div>
+                    </t> 
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id ="view_klinik_search" model="ir.ui.view">
+        <field name="name">surat.ijin.search</field>
+        <field name="model">surat.ijin</field>
+        <field name="arch" type="xml">
+            <search string="klinik">
+                <field name="name"/>
+                <field name="nip"/>
+                <field name="tanggal"/>
+                <field name="posisi"/>
+                <field name="kode_work_center"/>
+                <field name="no_kartu"/>
+                <field name="rujukan"/>
+            </search>
+        </field>
     </record>
 
     <record id="klinik_action" model="ir.actions.act_window">
@@ -43,10 +178,12 @@
         sequence="10"/>
 
     <menuitem
-        id="form_ijin"
+        id="form_ijin"S
         name="form ijin"
         parent="kode_klinik_root"
         action="klinik_action"
         sequence="10"/> 
         
+    <menuitem id="klinik_root" name="Klinik Icon" web_icon="Klinik Icon,static/description/icon.png"/>
+
 </odoo>
